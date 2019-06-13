@@ -8,11 +8,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Slf4j
-
 @Service
 @DialogueEventListener
 public class DialogueRabbitListener {
-	@SubscribeEvent(eventStore = EventStore.RABBITMQ,channelName = "my.test.channel")
+	
+	public  final String QUEUE_NAME="com.microideation.dialogue.test";
+	
+	@SubscribeEvent(eventStore = EventStore.RABBITMQ,channelName = QUEUE_NAME)
 	public void receiveEvent(DialogueEvent event) {
 		
 		log.info("Rabbit Event received:" + event);
